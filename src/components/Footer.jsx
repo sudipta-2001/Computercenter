@@ -231,17 +231,17 @@ const Footer = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-300/70 border border-cyan-300/40 mb-4">
               <MessageCircle size={16} className="text-cyan-700" />
-              <span className="text-sm text-cyan-800 font-semibold">
+              <span className="text-xl text-cyan-800 font-semibold">
                 Quick Enquiry
               </span>
             </div>
             {/* <h3 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-900 via-blue-900 to-indigo-800 px-7 bg-clip-text text-transparent">
                 Start Your Learning Journey Today
               </h3> */}
-            <h3 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-900 via-blue-900 to-indigo-800 px-7 bg-clip-text text-transparent">
+            {/* <h3 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-900 via-blue-900 to-indigo-800 px-7 bg-clip-text text-transparent">
               <Calendar className="text-cyan-300" />
               Book a Free Session
-            </h3>
+            </h3> */}
             <form
               onSubmit={handleSubmit}
               className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-4 sm:gap-5"

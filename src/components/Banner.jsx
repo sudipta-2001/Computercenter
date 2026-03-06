@@ -7,8 +7,8 @@ const Banner = () => {
   // 🔥 background scrolling images
   const bgImages = [
     "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/611208122_122228423756258681_3864029752384383445_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2a1932&_nc_ohc=-40aD_xP2nYQ7kNvwGDhRN1&_nc_oc=AdmM_CS0f8mp_LUuszngMzs4mzODVNyGnNydZGg6GTbESeWqbEd7bCCBMrZLHFMlvFc&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=z5K08SfUw7AVhIHQLP9tKA&oh=00_Afs-xGLHslWs5x-NhYWKL4wDwtLYPtNANiVqp0LSAqyUjQ&oe=69A4D0A8",
-    "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/504243557_122197005596258681_6307075496476040057_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=dd6889&_nc_ohc=T5hUe-b69coQ7kNvwGDggk5&_nc_oc=AdkkobwwgDZ9W_xmAvUBzPch4csYhe9_tvRvypwWYTKZQgEJk7JmfBkj22IUK3hli9E&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=WTvcjAcUEXPzeFjbQe8sqQ&_nc_ss=8&oh=00_Afx_Zjz7NPcd5mE2w8KSJToIrH317dWTn3isfz89ME9VMA&oe=69ACEA71",
-    "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/501158175_122197005704258681_2518117132281219476_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=dd6889&_nc_ohc=20otT0SptjIQ7kNvwGNaCJL&_nc_oc=AdmN13z5nf-dsClv_dbODerRtL6xgeHmlKuSwZv6KNeAPugUmQeNq7wwE5dEtIj31h0&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=9nTQHnRO2WJe8j-NGKH_yw&_nc_ss=8&oh=00_AfwkLV8Uf1cU5VCNX03Epe7_H3xw4yGTZhfVGwe0RgtWcQ&oe=69AD1B3A",
+    "https://scontent.frdp6-1.fna.fbcdn.net/v/t39.30808-6/605817029_122227452740258681_9064595274853418370_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=dd6889&_nc_ohc=K72Is_revPAQ7kNvwGg-gPm&_nc_oc=AdnV5rNHCRM3q5rnkuvj6WnAaW8A8A-Yy9a6mURWrSyZ2kEqxBVbQ9vHYCGdF-lHzAp0j6OimkG5r5OwnUI3uMiU&_nc_zt=23&_nc_ht=scontent.frdp6-1.fna&_nc_gid=3hTHWWeFe6EaoHd0VPWbEg&_nc_ss=8&oh=00_Afypnk5BohUPbt8cHw8jVNGlgen2o_i5x9S-tLKNtClgnw&oe=69B034AB",
+    "https://scontent.frdp6-1.fna.fbcdn.net/v/t39.30808-6/611208122_122228423756258681_3864029752384383445_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=2a1932&_nc_ohc=EE1Iyfeaqo8Q7kNvwFXZ66H&_nc_oc=Adm4mAGpfpvZgBZz8cNt7O0_noUgKzHIfS5MYqDB-4EMkfKshQ5GgGbP64h8m5WXMDeOdQR0azsOu6EhPddGQzDL&_nc_zt=23&_nc_ht=scontent.frdp6-1.fna&_nc_gid=XBel1_seCqY8EuEKPPLIuw&_nc_ss=8&oh=00_AfyMt-sh_rGiahCghvjr6-KJQCPGg7PfNkC0EUtV-0Mk2w&oe=69B03DA8",
   ];
 
   const [bgIndex, setBgIndex] = useState(0);
@@ -69,7 +69,10 @@ const Banner = () => {
           </div> */}
 
           {/* heading */}
-          <h1 className="text-4xl  mt-9 sm:text-5xl lg:text-7xl font-extrabold leading-tight text-white">
+          <h3 className=" mt-12 sm:text-lg lg:text-xl font-extrabold leading-tight text-white">
+            ভারত সরকার ও পশ্চিমবঙ্গ সরকার অনুমোদিত
+          </h3>
+          <h1 className="text-4xl  mt-9 sm:text-5xl lg:text-7xl font-extrabold leading-tight text-whitetext-4xl  mt-9 sm:text-5xl lg:text-7xl font-extrabold leading-tight text-white">
             কম্পিউটার
             <br />
             <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-emerald-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(34,211,238,0.6)]">
@@ -79,8 +82,7 @@ const Banner = () => {
 
           {/* description */}
           <p className="text-lg sm:text-xl text-white/70 max-w-xl mx-auto">
-            Industry-leading computer courses taught by experts. From web
-            development to cybersecurity — launch your tech career today.
+            Industry-leading computer courses taught by experts  ~ launch your tech career today.
           </p>
 
           {/* buttons */}

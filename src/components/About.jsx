@@ -43,7 +43,7 @@ const team = [
     name: "Sk Jamal Hossain ",
     role: "Founder & Lead Mentor",
     experience: "5+ Years Experience",
-    bio: "Director of the Computer Center, with over 15 years of experience in computer education and skill development. He is passionate about empowering students with practical knowledge and industry-relevant training. Under his leadership, the institute has successfully trained thousands of students and helped them build successful careers in the IT sector.",
+    bio: "Director of the Computer Center, with over 5+ years of experience in computer education and skill development. He is passionate about empowering students with practical knowledge and industry-relevant training. Under his leadership, the institute has successfully trained thousands of students and helped them build successful careers in the IT sector.",
     img: "https://scontent.fccu31-1.fna.fbcdn.net/v/t39.30808-6/480854976_122178660752258681_1278840696788821818_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=7Q10ku8X2xYQ7kNvwGuRiyy&_nc_oc=AdlOcwUB2v-1p4YEMZBSxgHhcpBzS1ilL6MxPHLcy8gtQNLO9REudNRPv3A93tMWJ7M&_nc_zt=23&_nc_ht=scontent.fccu31-1.fna&_nc_gid=6OUrnk1JS9Tqo98x4TCewg&_nc_ss=8&oh=00_AfxFD8oudn-9xBgwZstzVYKWHd-86DWJwbhAT-q563KoiA&oe=69ACC651",
   },
   {
@@ -51,7 +51,7 @@ const team = [
     role: "Senior consultants and admission coordinator",
     experience: "2+ Years Experience",
     skills: "Python, Data Science, Web Development",
-    bio: "works as the Admission Coordinator and is responsible for guiding students through the admission process smoothly and efficiently. With excellent communication and organizational skills, he/she ensures every student receives proper counseling regarding course selection, career opportunities, and documentation procedures.",
+    bio: "works as the Admission Coordinator and is responsible for guiding students through the admission process smoothly and efficiently. With excellent communication and organizational skills, she ensures every student receives proper counseling regarding course selection, career opportunities, and documentation procedures.",
     img: "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/557475973_759922197042437_7186624035349808425_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=53a332&_nc_ohc=0gXWBfQbOs4Q7kNvwF6axE8&_nc_oc=Adl7HSr1_SrSIZHrvjVPJDyEr2ZL5ZEWpPk506GkWpzzvR6cXU03WJgyhD2kAjEBezQ&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=ccrzfbsZ-dtHzvxEo1oUyA&_nc_ss=8&oh=00_AfyeytaDkL3j63c6OJye4sjvradBdmXOcoxH2eYNZiPa0Q&oe=69ACBF0E",
   },
   {

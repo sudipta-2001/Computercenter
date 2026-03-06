@@ -88,10 +88,10 @@ const Lfooter = () => {
 
             <ul className="space-y-2 text-sm text-blue-200">
               {[
-                "Mathematics",
-                "Science",
-                "Programming",
-                "Competitive Exams",
+                "Certificate In Computer Application",
+                "Diploma In Computer Application",
+                "Diploma In Financial Accounting",
+                "Diploma In Desktop Publishing",
               ].map((l) => (
                 <li
                   key={l}
@@ -116,16 +116,17 @@ const Lfooter = () => {
             <div className="space-y-3 text-sm text-blue-200">
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-cyan-300" />
-                +91 98765 43210
+                +91 94748 13016
+
               </div>
 
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-cyan-300" />
-                info@zisaa.com
+                Bhatarjncld@gmail.com
               </div>
 
               <p className="text-blue-300 text-xs pt-2">
-                Mon – Sat: 9:00 AM – 7:00 PM
+                Mon sat 09:30 - 6:00 (Sun 09:30 - 12:30)
               </p>
             </div>
           </motion.div>
@@ -136,7 +137,7 @@ const Lfooter = () => {
 
         {/* ================= BOTTOM ================= */}
         <div className="text-center text-blue-300 text-sm mt-8">
-          © {currentYear} EduCoach. All rights reserved.
+          © {currentYear} Bhatar JNCLD. All rights reserved.
         </div>
       </div>
     </footer>

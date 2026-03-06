@@ -11,9 +11,7 @@ const contactCards = [
     icon: "📍",
     title: "Visit Us",
     lines: [
-      "Post Office Building, 1st Floor,",
-      "Nasigram More, Bhatar,",
-      "Purba Barddhaman, WB 713125",
+      "Bhatar , Nasigram More , Post Office Building, 1st Flooor , Purba Bardhaman",
     ],
   },
   {
@@ -25,13 +23,13 @@ const contactCards = [
   {
     icon: "✉️",
     title: "Email Us",
-    lines: ["info@jncld.com"],
+    lines: ["Bhatarjncld@gmail.com"],
     action: { href: "mailto:info@jncld.com", label: "Send Email" },
   },
   {
     icon: "🕐",
     title: "Open Hours",
-    lines: ["Monday – Saturday", "9:00 AM – 7:00 PM"],
+    lines: ["Mon sat 09:30 - 6:00  (Sun 09:30 - 12:30)  "],
   },
 ];
 

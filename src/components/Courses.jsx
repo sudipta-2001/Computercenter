@@ -15,7 +15,7 @@ const coursesData = [
   {
     id: 1,
     name: "Certificate In Computer Application (CCA) ",
-    category: "Accounting",
+    category: "besic",
     popular: 95,
     icon: Calculator,
   },
@@ -123,16 +123,16 @@ export default function PremiumCourses() {
                       </h3>
                     </div>
 
-                    <p className="text-gray-300  mb-2">📂 {course.category}</p>
+                    
 
-                    <div className="flex items-center gap-2 text-yellow-400 mb-4">
+                    <div className="flex items-center gap-2 mt-10 text-yellow-400 mb-4">
                       <Star size={18} />
                       <span className="text-white">
                         Popularity: {course.popular}%
                       </span>
                     </div>
 
-                    <div className="flex justify-between  items-center">
+                    <div className="flex justify-center mt-9  items-center">
                       
 
                       <button
@@ -157,15 +157,15 @@ export default function PremiumCourses() {
               <p className="text-yellow-800 font-semibold">
                 ⚠️ Course fees must be paid at our center.
               </p>
-              <p className="text-yellow-800">📍 Bhatar, Burdwan Center</p>
+              <p className="text-yellow-800">📍 Bhatar , Nasigram More , Post Office Building, 1st Flooor , Purba Bardhaman</p>
             </div>
           </div>
 
           {/* STATS */}
           <div className="grid md:grid-cols-3 gap-6 mt-16">
             {[
-              { icon: Users, label: "Students", value: "5,000+" },
-              { icon: TrendingUp, label: "Success Rate", value: "98%" },
+              { icon: Users, label: "Students", value: "1,000+" },
+              { icon: TrendingUp, label: "Success Rate", value: "99.99%" },
               { icon: Star, label: "Rating", value: "4.9/5" },
             ].map((item, i) => {
               const Icon = item.icon;

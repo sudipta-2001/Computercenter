@@ -170,7 +170,7 @@ export default function From({ course, onClose }) {
               {/* PHOTO BOX */}
               <div className="absolute right-6 top-6 text-center">
                 <div
-                  className="border-2 mt-15 border-blue-900 flex items-center justify-center text-center bg-white"
+                  className="border-2 mt-20 border-blue-900 flex items-center justify-center text-center bg-white"
                   style={{
                     width: "120px",
                     height: "150px",
@@ -192,7 +192,7 @@ export default function From({ course, onClose }) {
                     JAWAHARLAL NEHRU COMPUTER LITERACY DRIVE
                   </h2>
                   <p className="text-xs">
-                    (An ISO 9001:2015 Certified Organization)
+                    (An ISO 9001:2015 Certified Organization)<br></br>Registered Under NCT, Delhi, Govt of India.  Registered Under Planing Commission in Information Technology, Govt of India Registered Under Ministry of HRD (CR Act), Govt of India
                   </p>
                 </div>
 
@@ -354,7 +354,7 @@ export default function From({ course, onClose }) {
             disabled={loading}
             className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow"
           >
-            {loading ? "Generating..." : "📥 Download PDF"}
+            {loading ? "Generating..." : "📥 Submit"}
           </button>
 
           <button
