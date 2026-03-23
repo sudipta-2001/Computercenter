@@ -54,6 +54,7 @@ const team = [
     bio: "works as the Admission Coordinator and is responsible for guiding students through the admission process smoothly and efficiently. With excellent communication and organizational skills, she ensures every student receives proper counseling regarding course selection, career opportunities, and documentation procedures.",
     img: "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/557475973_759922197042437_7186624035349808425_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=53a332&_nc_ohc=0gXWBfQbOs4Q7kNvwF6axE8&_nc_oc=Adl7HSr1_SrSIZHrvjVPJDyEr2ZL5ZEWpPk506GkWpzzvR6cXU03WJgyhD2kAjEBezQ&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=ccrzfbsZ-dtHzvxEo1oUyA&_nc_ss=8&oh=00_AfyeytaDkL3j63c6OJye4sjvradBdmXOcoxH2eYNZiPa0Q&oe=69ACBF0E",
   },
+  
   {
     name: "Amit Kumar Ghosh ",
     role: "Placement & Career Head",

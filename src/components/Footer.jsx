@@ -79,7 +79,7 @@ const Footer = () => {
       Icon: Facebook,
       url: "https://www.facebook.com/profile.php?id=61557760446650",
     },
-    { Icon: Youtube, url: "#" },
+    { Icon: Youtube, url: "https://www.youtube.com/@BHATARJAWAHARLALNEHRU_COMPUTER" },
     { Icon: Instagram, url: "#" },
     { Icon: Linkedin, url: "#" },
   ];

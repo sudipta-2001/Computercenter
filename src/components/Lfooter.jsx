@@ -4,10 +4,25 @@ import {
   Twitter,
   Instagram,
   Linkedin,
+  Youtube,
   Mail,
   Phone,
 } from "lucide-react";
 import { motion } from "framer-motion";
+
+
+const socialLinks = [
+  {
+    icon: Facebook,
+    url: "https://www.facebook.com/share/18WpgM4auX/?mibextid=wwXIfr",
+  },
+  {
+    icon: Youtube,
+    url: "https://www.youtube.com/@BHATARJAWAHARLALNEHRU_COMPUTER", // 👉 put your YouTube link
+  },
+];
+
+
 
 const Lfooter = () => {
   const currentYear = new Date().getFullYear();
@@ -39,19 +54,38 @@ const Lfooter = () => {
             </p>
 
             {/* social */}
+
             <div className="flex gap-3 mt-5">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
+  {socialLinks.map((item, i) => {
+    const Icon = item.icon;
+    return (
+      <motion.a
+        key={i}
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ scale: 1.15, y: -2 }}
+        whileTap={{ scale: 0.95 }}
+        className="p-2.5 rounded-full bg-blue-500/20 hover:bg-blue-500/40 border border-blue-400/20 backdrop-blur-xl transition"
+      >
+        <Icon size={18} />
+      </motion.a>
+    );
+  })}
+</div>
+            {/* <div className="flex gap-3 mt-5">
+              {[Facebook, Youtube ].map((Icon, i) => (
                 <motion.a
                   key={i}
                   whileHover={{ scale: 1.15, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  href="#"
+                  href=""
                   className="p-2.5 rounded-full bg-blue-500/20 hover:bg-blue-500/40 border border-blue-400/20 backdrop-blur-xl transition"
                 >
                   <Icon size={18} />
                 </motion.a>
               ))}
-            </div>
+            </div> */}
           </motion.div>
 
           {/* ===== QUICK LINKS ===== */}
@@ -126,7 +160,7 @@ const Lfooter = () => {
               </div>
 
               <p className="text-blue-300 text-xs pt-2">
-                Mon sat 09:30 - 6:00 (Sun 09:30 - 12:30)
+               MONDAY - SATURDAY  (09:30 AM - 06:00 PM) SUNDAY  (09:30 AM - 12:30 PM)
               </p>
             </div>
           </motion.div>

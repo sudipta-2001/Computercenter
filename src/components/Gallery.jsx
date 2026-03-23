@@ -2,44 +2,51 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Play, Pause } from "lucide-react";
 import Lfooter from "./Lfooter";
+import cover from "../assets/cover.jpg";
+import cover2 from "../assets/cover2.jpg";
+import cover3 from "../assets/cover3.jpg";
+import batch from "../assets/batch.jpg";
+import batch2 from "../assets/batch2.jpg";
+import winner from "../assets/winner.jpg";
+
+
+
+
+
+
 
 /* 🚀 Running Batch / New Arrivals */
 
 const runningBatch = [
   {
-    img: "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/645503547_122234937866258681_4781319599461836712_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=dd6889&_nc_ohc=eRjFNkDr8o0Q7kNvwHGSVvn&_nc_oc=Adkk0lK39llfhkeVUFzwz1w-N8cL8HaDMIyknAaST8bmhVCn-5im12TMgwTu7p9EqKw&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=xGLY7v3OFgYOSOrzvvlKmw&_nc_ss=8&oh=00_AfzfHibP9AHy0Lc8N1DWu0CX2_0niZVQ758GnMrBcYYMeA&oe=69B0BC5F",
-    title: "Our 2026 new Batches",
+    img: batch2,
+    title: "Session 2026-27 Batches",
     start: "Fev 2026",
-    students: "50+ Students",
+    students: "150+ Students",
     mentor: "",
   },
   {
-    img: "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/644151896_122234835278258681_1927114208068123188_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=dd6889&_nc_ohc=RUowF8bKeV4Q7kNvwGo4MQM&_nc_oc=AdmPqrZGlD3LUXXaO6_xoZALSKAgaxnQVChoaDILrE-rAOVz-QIOd3hupsTcFuRu7Bc&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=wHCC9AbUlen7EVfI9URK2A&_nc_ss=8&oh=00_AfybvJ1PpTHrogxUEEbmQ8FbhJSWgOgnpvAjUD7cwdj2Eg&oe=69B0C760",
-    title: "Prize distribution for students",
+    img: batch,
+    title: "Prize distribution ",
     start: "Fav 2026",
-    students: "50+ Students",
+    students: "150+ Students",
     mentor: "Industry Experts",
   },
 
   {
-    img: "https://scontent.fccu31-1.fna.fbcdn.net/v/t39.30808-6/643763208_122234833652258681_1837731094012027602_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=dd6889&_nc_ohc=tP7hXqBM0zoQ7kNvwEJ43yK&_nc_oc=AdkRXJjyEcieZ_gzbKS8OwMGNUPD_oVWb6UcIVvvfbHzFXvQrZMkZBy2AVKnsitgLRI&_nc_zt=23&_nc_ht=scontent.fccu31-1.fna&_nc_gid=QXhjnHmoOkH29JIFpoKUrg&_nc_ss=8&oh=00_AfzDy3q3y6HYQ2dbfh4eq7sZOSf-Ge5eA4DWh9yikQmOiQ&oe=69B0AF60",
-    title: "Our desktop winner student",
+    img: winner,
+    title: " Desktop winner student",
     start: "Fav 2026",
-    students: " Fatima",
+    students: " Sahina Parveen",
     mentor: "AI Professionals",
   },
 ];
 
 /* 🎯 IMAGES */
 const rawImages = [
-  "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/611208122_122228423756258681_3864029752384383445_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=2a1932&_nc_ohc=LkSYWVV7ZPwQ7kNvwECDBPk&_nc_oc=AdkhnpJVQ8KvDgd3ksyQX2ligwVVX4i5NsDk3q4hVzto78CuCIO-zagvSHCPGXgZY5o&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=5j6AQ2WrgouWKkH5DOt42Q&_nc_ss=8&oh=00_Afy8_4juMCw6iX3v2JJuxoCREgPG27d0Ek1P8-YkEgcolQ&oe=69ACF1E8",
-  "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/607083370_122227579868258681_2924136637862751329_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=dd6889&_nc_ohc=EYCfjhCjRQoQ7kNvwFoUvKs&_nc_oc=AdlmB8iZCzjt1yZpCrogBnmdGVCWvRtjVNml-S4uKyBrSCnVPQ6tFeH0goe_CKsc3TY&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=PTXNcLwv8W-MbNN4JJpL4g&_nc_ss=8&oh=00_AfxrzP_t73xQNUyjfYhLrTrfFLXJ446z-2u3f80KxyZmHA&oe=69B0BCAF",
-  "https://scontent.fccu31-1.fna.fbcdn.net/v/t39.30808-6/606256599_122227452566258681_2575108788842423387_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=dd6889&_nc_ohc=DDNt3SYU2sMQ7kNvwGAx4Kg&_nc_oc=AdnIfgkrjOKjqs7kZz8xVMv38GeD1HswtsVGbDPq49gANM3nTprkjsgsc12qV6fVD3Q&_nc_zt=23&_nc_ht=scontent.fccu31-1.fna&_nc_gid=app85LdEXm79iSJl-19deg&_nc_ss=8&oh=00_AfwPGYhWFJKAhXXV8UPoJhKbHQorVQsTyGofS4W3xM8rOA&oe=69B0BB09",
-  "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/604947674_122227452488258681_4342049330096873892_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=dd6889&_nc_ohc=DlB1p9gLDNIQ7kNvwGSb1-o&_nc_oc=AdnwJCksO1ka1yH0nIrrts25sTQ-151ZzTRVDma-3roX90PFfL3iDjZQx51EMWtUxPs&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=wO-N_FE5MLHcneGwuyegFA&_nc_ss=8&oh=00_Afwlx9tE7efgLqClDRKOvXO4nR39n-dS_ro3KObXVk8uJg&oe=69B0B119",
-  "https://scontent.fccu31-1.fna.fbcdn.net/v/t39.30808-6/540941187_122211131942258681_8603931802066950977_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=dd6889&_nc_ohc=YYJ1WQ2ODHkQ7kNvwFr39Qn&_nc_oc=Adk-7EabZ2vLbrBGbSse9aWEkKhaRpIrUYJaLbIeAI507q14tSado3vtqj12uUQMuUk&_nc_zt=23&_nc_ht=scontent.fccu31-1.fna&_nc_gid=agY3bRkuwrOxe1299bccPA&_nc_ss=8&oh=00_AfxZNqAECBSckoodZI-E8Fpvr4EoF30ACJHNbrcr8AsLLg&oe=69B0BC28",
-  "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/542756923_122210963654258681_2371969095710694280_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=dd6889&_nc_ohc=LJZV1j2LcvQQ7kNvwFzxcYI&_nc_oc=Adm9DRpUysWU5tbI--6DEIaB0MO4IwxKAPZJvPgV2HA_4KWdiIQiD8j5SqOYO6G8AQ0&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=pgvEkxg4vBAtkNWEf9004g&_nc_ss=8&oh=00_AfyNwm40FEFSvmc17RBNc0eKKEezWTlN6qKVJkEYoCerjA&oe=69B0BE30",
-  "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/504164962_122197005686258681_7171964612870542355_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=dd6889&_nc_ohc=DNN7AEgTI9QQ7kNvwHcqYyM&_nc_oc=AdljNKGlHIPkA4dBqOV1UPBeifXSK6CBOUYqj3KkcGkHiKr5gfBLJHeTUNNF64zfsN0&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=2A0WkXhO19DoaKvioSi3qw&_nc_ss=8&oh=00_Afzl8QVWGy1Z-U4dB-w6OOLclld6R52MV8QT-Lx99CyrWQ&oe=69B0ACA9",
-  "https://scontent.fccu31-1.fna.fbcdn.net/v/t39.30808-6/500366293_122195462192258681_2198661820858194140_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=dd6889&_nc_ohc=eTPoLUXoVUgQ7kNvwHKXGjQ&_nc_oc=AdmcO5H75Em34D1ui3PFtPTwM5tEhtE0uZl0C-gt3EKWShdN7bELQK2E4pNEFuF9dEo&_nc_zt=23&_nc_ht=scontent.fccu31-1.fna&_nc_gid=l6rLD20KzqDkofoNjK-rVg&_nc_ss=8&oh=00_Afzf2V9CMlUNQVzeRKCrXX33-FSoc5krBB0g315Npu6dTQ&oe=69B0A73A",
+cover,
+cover2,
+cover3,
 ];
 
 /* 🎵 music */
@@ -247,7 +254,7 @@ const Gallery = () => {
 
                 <div className="p-6 text-white">
                   <h4 className="text-xl font-bold mb-2">{batch.title}</h4>
-                  <p className="text-white/80">📅 Start: {batch.start}</p>
+                  
                   <p className="text-white/80">👨‍🎓 Students: {batch.students}</p>
                 </div>
               </motion.div>

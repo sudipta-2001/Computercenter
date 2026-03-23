@@ -13,12 +13,13 @@ import From from "./From";
 
 const coursesData = [
   {
-    id: 1,
-    name: "Certificate In Computer Application (CCA) ",
-    category: "besic",
-    popular: 95,
+    id: 5,
+    name: "Diploma In Financial Accounting (Tally with GST)",
+    category: "Accounting",
+    popular: 99,
     icon: Calculator,
   },
+  
   {
     id: 2,
     name: "Diploma In Computer Application (DCA)",
@@ -30,8 +31,15 @@ const coursesData = [
     id: 3,
     name: "Certificate In Financial Accounting (Tally with GST)",
     category: "Diploma",
-    popular: 85,
+    popular: 95,
     icon: GraduationCap,
+  },
+  {
+    id: 1,
+    name: "Certificate In Computer Application (CCA) ",
+    category: "besic",
+    popular: 95,
+    icon: Calculator,
   },
    {
     id: 4,
@@ -40,13 +48,7 @@ const coursesData = [
     popular: 90,
     icon: Calculator,
   },
-  {
-    id: 5,
-    name: "Diploma In Financial Accounting (Tally with GST)",
-    category: "Accounting",
-    popular: 90,
-    icon: Calculator,
-  },
+ 
   {
     id: 6,
     name: "Diploma In Desktop Publishing (DDTP)",
@@ -155,7 +157,7 @@ export default function PremiumCourses() {
                 📢 Notice Board
               </h2>
               <p className="text-yellow-800 font-semibold">
-                ⚠️ Course fees must be paid at our center.
+                ⚠️ Course fees must be paid at our Office.
               </p>
               <p className="text-yellow-800">📍 Bhatar , Nasigram More , Post Office Building, 1st Flooor , Purba Bardhaman</p>
             </div>

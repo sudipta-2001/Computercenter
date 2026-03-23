@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import cover from "../assets/cover.jpg";
+import cover2 from "../assets/cover2.jpg";
+import cover3 from "../assets/cover3.jpg";
+
 
 const Banner = () => {
   // 🔥 background scrolling images
   const bgImages = [
-    "https://scontent.fccu31-2.fna.fbcdn.net/v/t39.30808-6/611208122_122228423756258681_3864029752384383445_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2a1932&_nc_ohc=-40aD_xP2nYQ7kNvwGDhRN1&_nc_oc=AdmM_CS0f8mp_LUuszngMzs4mzODVNyGnNydZGg6GTbESeWqbEd7bCCBMrZLHFMlvFc&_nc_zt=23&_nc_ht=scontent.fccu31-2.fna&_nc_gid=z5K08SfUw7AVhIHQLP9tKA&oh=00_Afs-xGLHslWs5x-NhYWKL4wDwtLYPtNANiVqp0LSAqyUjQ&oe=69A4D0A8",
-    "https://scontent.frdp6-1.fna.fbcdn.net/v/t39.30808-6/605817029_122227452740258681_9064595274853418370_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=dd6889&_nc_ohc=K72Is_revPAQ7kNvwGg-gPm&_nc_oc=AdnV5rNHCRM3q5rnkuvj6WnAaW8A8A-Yy9a6mURWrSyZ2kEqxBVbQ9vHYCGdF-lHzAp0j6OimkG5r5OwnUI3uMiU&_nc_zt=23&_nc_ht=scontent.frdp6-1.fna&_nc_gid=3hTHWWeFe6EaoHd0VPWbEg&_nc_ss=8&oh=00_Afypnk5BohUPbt8cHw8jVNGlgen2o_i5x9S-tLKNtClgnw&oe=69B034AB",
-    "https://scontent.frdp6-1.fna.fbcdn.net/v/t39.30808-6/611208122_122228423756258681_3864029752384383445_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=2a1932&_nc_ohc=EE1Iyfeaqo8Q7kNvwFXZ66H&_nc_oc=Adm4mAGpfpvZgBZz8cNt7O0_noUgKzHIfS5MYqDB-4EMkfKshQ5GgGbP64h8m5WXMDeOdQR0azsOu6EhPddGQzDL&_nc_zt=23&_nc_ht=scontent.frdp6-1.fna&_nc_gid=XBel1_seCqY8EuEKPPLIuw&_nc_ss=8&oh=00_AfyMt-sh_rGiahCghvjr6-KJQCPGg7PfNkC0EUtV-0Mk2w&oe=69B03DA8",
+    cover,
+    cover2,
+    cover3,
   ];
 
   const [bgIndex, setBgIndex] = useState(0);
@@ -82,7 +86,8 @@ const Banner = () => {
 
           {/* description */}
           <p className="text-lg sm:text-xl text-white/70 max-w-xl mx-auto">
-            Industry-leading computer courses taught by experts  ~ launch your tech career today.
+            Industry-leading computer courses taught by experts ~ launch your
+            tech career today.
           </p>
 
           {/* buttons */}

@@ -150,7 +150,8 @@ export default function From({ course, onClose }) {
       >
         <div className="bg-yellow-100 border border-yellow-400 text-yellow-900 p-3 text-center text-sm font-semibold rounded mb-4">
           📢 After downloading this form, submit hardcopy with fees at —
-          <b> Bhatar, Burdwan Centre</b>.
+          <b> BHATAR JAWAHARLAL NEHRU
+COMPUTER LITERACY DRIVE</b>.
         </div>
 
         {/* ✅ RESPONSIVE WRAPPER */}
@@ -192,7 +193,10 @@ export default function From({ course, onClose }) {
                     JAWAHARLAL NEHRU COMPUTER LITERACY DRIVE
                   </h2>
                   <p className="text-xs">
-                    (An ISO 9001:2015 Certified Organization)<br></br>Registered Under NCT, Delhi, Govt of India.  Registered Under Planing Commission in Information Technology, Govt of India Registered Under Ministry of HRD (CR Act), Govt of India
+                    (An ISO 9001:2015 Certified Organization)<br></br>Registered
+                    Under NCT, Delhi, Govt of India. Registered Under Planing
+                    Commission in Information Technology, Govt of India
+                    Registered Under Ministry of HRD (CR Act), Govt of India
                   </p>
                 </div>
 
@@ -313,7 +317,11 @@ export default function From({ course, onClose }) {
                     name="source"
                     onChange={handleChange}
                   />
-                  <Field label="Centre Name" value="Bhatar, Burdwan" readOnly />
+                  <Field
+                    label="Centre Name"
+                    value="BHATAR JAWAHARLAL NEHRU COMPUTER LITERACY DRIVE"
+                    readOnly
+                  />
                 </div>
 
                 {/* BIG DECLARATION */}

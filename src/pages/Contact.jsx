@@ -29,7 +29,7 @@ const contactCards = [
   {
     icon: "🕐",
     title: "Open Hours",
-    lines: ["Mon sat 09:30 - 6:00  (Sun 09:30 - 12:30)  "],
+    lines: ["MONDAY - SATURDAY (09:30AM - 06:00 PM) ,  SUNDAY (9.30 AM - 12.30 PM)  "],
   },
 ];
 
@@ -72,12 +72,12 @@ const Contact = () => {
             WebkitTextFillColor: "transparent",
           }}
         >
-          Bhatar JNCLD Computer Center
+          Bhatar JNCLD 
         </h1>
 
         <p className="text-blue-300/80 max-w-xl mx-auto mb-8">
           Professional computer training institute providing job-oriented
-          courses with practical learning and career guidance.
+          courses with practical learning and career guidance. estd-2021
         </p>
 
         <div
