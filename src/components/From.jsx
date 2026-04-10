@@ -10,7 +10,7 @@ export default function From({ course, onClose }) {
   const [loading, setLoading] = useState(false);
   const [scale, setScale] = useState(1);
 
-  // AUTO SCALE FOR SMALL SCREEN (ON-SCREEN DISPLAY ONLY)
+  // Auto-scale for small screens (only for on-screen display)
   useEffect(() => {
     const handleResize = () => {
       if (!wrapperRef.current) return;
@@ -23,7 +23,7 @@ export default function From({ course, onClose }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // FORM STATE
+  // Form state
   const [formData, setFormData] = useState({
     name: "",
     father: "",
@@ -56,7 +56,7 @@ export default function From({ course, onClose }) {
     }));
   };
 
-  // SAVE TO FIREBASE
+  // Save to Firebase
   const saveToDatabase = async () => {
     const response = await fetch(
       "https://computercenter2026-138c1-default-rtdb.firebaseio.com/admissions.json",
@@ -77,7 +77,7 @@ export default function From({ course, onClose }) {
     return await response.json();
   };
 
-  // ✅ FIXED PDF GENERATION – FULL PAGE COVERAGE
+  // PDF generation – fits entire form without cropping
   const downloadPDF = async () => {
     if (!agree) {
       alert("Please accept declaration first");
@@ -90,24 +90,24 @@ export default function From({ course, onClose }) {
 
       const element = formRef.current;
 
-      // 1. Temporarily remove CSS transform (scale) for clean capture
+      // Temporarily remove CSS transform for clean capture
       const originalTransform = element.style.transform;
       const originalTransformOrigin = element.style.transformOrigin;
       element.style.transform = "none";
       element.style.transformOrigin = "top left";
 
-      // 2. Capture at natural size (pixelRatio = 1 ensures 794x1123)
+      // Capture at natural size (pixelRatio = 1 ensures 794x1123)
       const dataUrl = await htmlToImage.toJpeg(element, {
         quality: 0.95,
         pixelRatio: 1,
         backgroundColor: "#ffffff",
       });
 
-      // 3. Restore transform for on-screen display
+      // Restore transform for on-screen display
       element.style.transform = originalTransform;
       element.style.transformOrigin = originalTransformOrigin;
 
-      // 4. Create PDF and fill the entire A4 page
+      // Create PDF
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "px",
@@ -124,10 +124,10 @@ export default function From({ course, onClose }) {
         img.src = dataUrl;
       });
 
-      // Calculate scale to fill the page completely (may crop slightly)
+      // Scale to fit the entire image inside the page (no cropping)
       const scaleX = pdfWidth / img.width;
       const scaleY = pdfHeight / img.height;
-      const finalScale = Math.max(scaleX, scaleY);
+      const finalScale = Math.min(scaleX, scaleY);
 
       const finalWidth = img.width * finalScale;
       const finalHeight = img.height * finalScale;
@@ -171,7 +171,7 @@ export default function From({ course, onClose }) {
                 fontFamily: '"Times New Roman", serif',
               }}
             >
-              {/* PHOTO BOX */}
+              {/* Photo box */}
               <div className="absolute right-6 top-6 text-center">
                 <div
                   className="border-2 mt-20 border-blue-900 flex items-center justify-center text-center bg-white"
@@ -215,7 +215,7 @@ export default function From({ course, onClose }) {
                     <Field label="Gender" name="gender" onChange={handleChange} />
                   </div>
 
-                  {/* EDUCATION TABLE */}
+                  {/* Educational Qualification Table */}
                   <div className="mt-4">
                     <p className="font-semibold mb-2">Educational Qualification:</p>
                     <table className="w-full border border-blue-900 text-[12px]">
@@ -263,7 +263,7 @@ export default function From({ course, onClose }) {
                   />
                 </div>
 
-                {/* DECLARATION */}
+                {/* Declaration */}
                 <div className="mt-6 border border-blue-900 p-4 bg-white">
                   <p className="font-bold text-[15px] mb-2">Declaration by Student:</p>
                   <p className="text-[14px] leading-relaxed text-justify mb-4">
@@ -273,7 +273,11 @@ export default function From({ course, onClose }) {
                     admission may be cancelled without prior notice.
                   </p>
                   <label className="flex items-center gap-2 font-semibold">
-                    <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+                    <input
+                      type="checkbox"
+                      checked={agree}
+                      onChange={(e) => setAgree(e.target.checked)}
+                    />
                     ✔ I Agree
                   </label>
                 </div>
