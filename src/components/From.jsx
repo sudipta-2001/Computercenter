@@ -10,7 +10,7 @@ export default function From({ course, onClose }) {
   const [loading, setLoading] = useState(false);
   const [scale, setScale] = useState(1);
 
-  // ✅ AUTO SCALE FOR SMALL SCREEN (PROPER FIX)
+  // AUTO SCALE FOR SMALL SCREEN (ON-SCREEN DISPLAY ONLY)
   useEffect(() => {
     const handleResize = () => {
       if (!wrapperRef.current) return;
@@ -18,13 +18,12 @@ export default function From({ course, onClose }) {
       const newScale = Math.min(1, wrapperWidth / 820);
       setScale(newScale);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ FORM STATE
+  // FORM STATE
   const [formData, setFormData] = useState({
     name: "",
     father: "",
@@ -41,7 +40,6 @@ export default function From({ course, onClose }) {
     ],
   });
 
-  // ✅ HANDLE NORMAL CHANGE
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -49,7 +47,6 @@ export default function From({ course, onClose }) {
     }));
   };
 
-  // ✅ HANDLE EDUCATION CHANGE
   const handleEducationChange = (index, field, value) => {
     const updated = [...formData.education];
     updated[index][field] = value;
@@ -59,83 +56,91 @@ export default function From({ course, onClose }) {
     }));
   };
 
-  // ✅ SAVE TO FIREBASE
+  // SAVE TO FIREBASE
   const saveToDatabase = async () => {
     const response = await fetch(
       "https://computercenter2026-138c1-default-rtdb.firebaseio.com/admissions.json",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
           course: course?.name || "",
           createdAt: new Date().toISOString(),
         }),
-      },
+      }
     );
-
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error("Firebase Error: " + errorText);
     }
-
-    const result = await response.json();
-    console.log("✅ Saved:", result);
+    return await response.json();
   };
 
-  // ✅ PDF + SAVE
+  // ✅ FIXED PDF GENERATION – FULL PAGE COVERAGE
   const downloadPDF = async () => {
+    if (!agree) {
+      alert("Please accept declaration first");
+      return;
+    }
+
+    setLoading(true);
     try {
-      if (!agree) {
-        alert("Please accept declaration first");
-        return;
-      }
-
-      setLoading(true);
-
       await saveToDatabase();
-      await new Promise((resolve) => setTimeout(resolve, 400));
 
       const element = formRef.current;
 
+      // 1. Temporarily remove CSS transform (scale) for clean capture
+      const originalTransform = element.style.transform;
+      const originalTransformOrigin = element.style.transformOrigin;
+      element.style.transform = "none";
+      element.style.transformOrigin = "top left";
+
+      // 2. Capture at natural size (pixelRatio = 1 ensures 794x1123)
       const dataUrl = await htmlToImage.toJpeg(element, {
         quality: 0.95,
-        pixelRatio: 2,
+        pixelRatio: 1,
         backgroundColor: "#ffffff",
       });
 
+      // 3. Restore transform for on-screen display
+      element.style.transform = originalTransform;
+      element.style.transformOrigin = originalTransformOrigin;
+
+      // 4. Create PDF and fill the entire A4 page
       const pdf = new jsPDF({
         orientation: "portrait",
-        unit: "mm",
+        unit: "px",
         format: "a4",
       });
 
-      const imgProps = pdf.getImageProperties(dataUrl);
+      const pdfWidth = pdf.internal.pageSize.getWidth();  // ~595px
+      const pdfHeight = pdf.internal.pageSize.getHeight(); // ~842px
 
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
+      // Get actual image dimensions
+      const img = new Image();
+      await new Promise((resolve) => {
+        img.onload = resolve;
+        img.src = dataUrl;
+      });
 
-      const imgRatio = imgProps.width / imgProps.height;
+      // Calculate scale to fill the page completely (may crop slightly)
+      const scaleX = pdfWidth / img.width;
+      const scaleY = pdfHeight / img.height;
+      const finalScale = Math.max(scaleX, scaleY);
 
-      let imgWidth = pdfWidth;
-      let imgHeight = pdfWidth / imgRatio;
+      const finalWidth = img.width * finalScale;
+      const finalHeight = img.height * finalScale;
+      const x = (pdfWidth - finalWidth) / 2;
+      const y = (pdfHeight - finalHeight) / 2;
 
-      if (imgHeight > pdfHeight) {
-        imgHeight = pdfHeight;
-        imgWidth = pdfHeight * imgRatio;
-      }
-
-      const x = (pdfWidth - imgWidth) / 2;
-
-      pdf.addImage(dataUrl, "JPEG", x, 0, imgWidth, imgHeight);
+      pdf.addImage(dataUrl, "JPEG", x, y, finalWidth, finalHeight);
       pdf.save("JNCLD_Admission_Form.pdf");
 
       alert("✅ Data Saved & PDF Downloaded!");
     } catch (error) {
-      console.error("❌ ERROR:", error);
-      alert("Data not saved. Check Firebase Rules.");
+      console.error(error);
+      alert("Failed: " + error.message);
     } finally {
       setLoading(false);
     }
@@ -150,11 +155,9 @@ export default function From({ course, onClose }) {
       >
         <div className="bg-yellow-100 border border-yellow-400 text-yellow-900 p-3 text-center text-sm font-semibold rounded mb-4">
           📢 After downloading this form, submit hardcopy with fees at —
-          <b> BHATAR JAWAHARLAL NEHRU
-COMPUTER LITERACY DRIVE</b>.
+          <b> BHATAR JAWAHARLAL NEHRU COMPUTER LITERACY DRIVE</b>.
         </div>
 
-        {/* ✅ RESPONSIVE WRAPPER */}
         <div ref={wrapperRef} className="w-full overflow-auto">
           <div className="flex justify-center">
             <div
@@ -172,12 +175,7 @@ COMPUTER LITERACY DRIVE</b>.
               <div className="absolute right-6 top-6 text-center">
                 <div
                   className="border-2 mt-20 border-blue-900 flex items-center justify-center text-center bg-white"
-                  style={{
-                    width: "120px",
-                    height: "150px",
-                    fontSize: "10px",
-                    lineHeight: "1.2",
-                  }}
+                  style={{ width: "120px", height: "150px", fontSize: "10px", lineHeight: "1.2" }}
                 >
                   Paste
                   <br />
@@ -193,117 +191,62 @@ COMPUTER LITERACY DRIVE</b>.
                     JAWAHARLAL NEHRU COMPUTER LITERACY DRIVE
                   </h2>
                   <p className="text-xs">
-                    (An ISO 9001:2015 Certified Organization)<br></br>Registered
-                    Under NCT, Delhi, Govt of India. Registered Under Planing
-                    Commission in Information Technology, Govt of India
-                    Registered Under Ministry of HRD (CR Act), Govt of India
+                    (An ISO 9001:2015 Certified Organization)<br />
+                    Registered Under NCT, Delhi, Govt of India. Registered Under Planning
+                    Commission in Information Technology, Govt of India Registered Under
+                    Ministry of HRD (CR Act), Govt of India
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  <Field
-                    label="Name of the Student"
-                    name="name"
-                    onChange={handleChange}
-                  />
-                  <Field
-                    label="Father’s / Guardian’s Name"
-                    name="father"
-                    onChange={handleChange}
-                  />
-                  <Field
-                    label="Present Address"
-                    name="address"
-                    onChange={handleChange}
-                  />
+                  <Field label="Name of the Student" name="name" onChange={handleChange} />
+                  <Field label="Father’s / Guardian’s Name" name="father" onChange={handleChange} />
+                  <Field label="Present Address" name="address" onChange={handleChange} />
 
                   <div className="grid grid-cols-2 gap-3">
-                    <Field
-                      label="Telephone / Mobile"
-                      name="mobile"
-                      onChange={handleChange}
-                    />
-                    <Field
-                      label="Email ID"
-                      name="email"
-                      onChange={handleChange}
-                    />
+                    <Field label="Telephone / Mobile" name="mobile" onChange={handleChange} />
+                    <Field label="Email ID" name="email" onChange={handleChange} />
                   </div>
 
                   <Field label="Course" value={course?.name} readOnly />
 
                   <div className="grid grid-cols-2 gap-3">
-                    <Field
-                      label="Date of Birth"
-                      name="dob"
-                      onChange={handleChange}
-                    />
-                    <Field
-                      label="Gender"
-                      name="gender"
-                      onChange={handleChange}
-                    />
+                    <Field label="Date of Birth" name="dob" onChange={handleChange} />
+                    <Field label="Gender" name="gender" onChange={handleChange} />
                   </div>
 
                   {/* EDUCATION TABLE */}
                   <div className="mt-4">
-                    <p className="font-semibold mb-2">
-                      Educational Qualification:
-                    </p>
-
+                    <p className="font-semibold mb-2">Educational Qualification:</p>
                     <table className="w-full border border-blue-900 text-[12px]">
                       <thead className="bg-blue-100">
                         <tr>
                           <th className="border border-blue-900 p-1">Exam</th>
-                          <th className="border border-blue-900 p-1">
-                            Board / University
-                          </th>
+                          <th className="border border-blue-900 p-1">Board / University</th>
                           <th className="border border-blue-900 p-1">Year</th>
-                          <th className="border border-blue-900 p-1">
-                            % / Grade
-                          </th>
+                          <th className="border border-blue-900 p-1">% / Grade</th>
                         </tr>
                       </thead>
                       <tbody>
                         {formData.education.map((edu, index) => (
                           <tr key={index}>
-                            <td className="border border-blue-900 p-1 text-center">
-                              {edu.exam}
-                            </td>
+                            <td className="border border-blue-900 p-1 text-center">{edu.exam}</td>
                             <td className="border border-blue-900 p-1">
                               <input
                                 className="w-full outline-none"
-                                onChange={(e) =>
-                                  handleEducationChange(
-                                    index,
-                                    "board",
-                                    e.target.value,
-                                  )
-                                }
+                                onChange={(e) => handleEducationChange(index, "board", e.target.value)}
                               />
                             </td>
                             <td className="border border-blue-900 p-1">
                               <input
                                 className="w-full outline-none"
-                                onChange={(e) =>
-                                  handleEducationChange(
-                                    index,
-                                    "year",
-                                    e.target.value,
-                                  )
-                                }
+                                onChange={(e) => handleEducationChange(index, "year", e.target.value)}
                               />
                             </td>
                             <td className="border border-blue-900 p-1">
                               <input
                                 className="w-full outline-none"
-                                onChange={(e) =>
-                                  handleEducationChange(
-                                    index,
-                                    "percentage",
-                                    e.target.value,
-                                  )
-                                }
+                                onChange={(e) => handleEducationChange(index, "percentage", e.target.value)}
                               />
                             </td>
                           </tr>
@@ -312,11 +255,7 @@ COMPUTER LITERACY DRIVE</b>.
                     </table>
                   </div>
 
-                  <Field
-                    label="Source of Information"
-                    name="source"
-                    onChange={handleChange}
-                  />
+                  <Field label="Source of Information" name="source" onChange={handleChange} />
                   <Field
                     label="Centre Name"
                     value="BHATAR JAWAHARLAL NEHRU COMPUTER LITERACY DRIVE"
@@ -324,25 +263,17 @@ COMPUTER LITERACY DRIVE</b>.
                   />
                 </div>
 
-                {/* BIG DECLARATION */}
+                {/* DECLARATION */}
                 <div className="mt-6 border border-blue-900 p-4 bg-white">
-                  <p className="font-bold text-[15px] mb-2">
-                    Declaration by Student:
-                  </p>
+                  <p className="font-bold text-[15px] mb-2">Declaration by Student:</p>
                   <p className="text-[14px] leading-relaxed text-justify mb-4">
-                    I hereby declare that the information provided above is true
-                    and correct to the best of my knowledge and belief. I agree
-                    to abide by the rules and regulations of the institution. I
-                    understand that if any information found incorrect, my
+                    I hereby declare that the information provided above is true and correct to the
+                    best of my knowledge and belief. I agree to abide by the rules and regulations
+                    of the institution. I understand that if any information found incorrect, my
                     admission may be cancelled without prior notice.
                   </p>
-
                   <label className="flex items-center gap-2 font-semibold">
-                    <input
-                      type="checkbox"
-                      checked={agree}
-                      onChange={(e) => setAgree(e.target.checked)}
-                    />
+                    <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
                     ✔ I Agree
                   </label>
                 </div>
@@ -364,7 +295,6 @@ COMPUTER LITERACY DRIVE</b>.
           >
             {loading ? "Generating..." : "📥 Submit"}
           </button>
-
           <button
             onClick={onClose}
             className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold"
@@ -377,8 +307,7 @@ COMPUTER LITERACY DRIVE</b>.
   );
 }
 
-/* helpers */
-
+// Helper components
 const Field = ({ label, value, readOnly, name, onChange }) => (
   <div>
     <label className="block text-[12px] font-semibold mb-1">{label}:</label>
